@@ -1,6 +1,10 @@
+(require 'info)
 (require 'treemacs)
 (require 'treemacs-treelib)
+(require 'treemacs-mouse-interface)
 (require 'treemacs-rendering)
+(require 'cl-extra)
+(require 'TreemacsExt)
 
 (defun treemacs-list-info-buffer ()
   (progn
@@ -254,7 +258,7 @@
 	   ((equal path current-tag-path)
 		;; (print (format "Matched: %s" path))
 		'matched)
-	   ((and (<=(length path) (length current-tag-path)) (equal path (subseq current-tag-path 0 (length path))))
+	   ((and (<=(length path) (length current-tag-path)) (equal path (cl-subseq current-tag-path 0 (length path))))
 		;; (print "partial matched")
 		;; (print (format "Parital Matched: %s to %s" path current-tag-path))
 		'partial-matched
