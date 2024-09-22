@@ -55,8 +55,8 @@
 (treemacs-define-entry-node-type TreemacsExt_Info
   :label (propertize "Info" 'face 'font-lock-keyword-face)
   :key 'TreemacsExt_Info
-  :open-icon (treemacs-get-icon-value 'list)
-  :closed-icon (treemacs-get-icon-value 'list)
+  :open-icon (treemacs-get-icon-value 'info)
+  :closed-icon (treemacs-get-icon-value 'info)
   :children (treemacs-list-info-files)
   :child-type 'info-file)
 
