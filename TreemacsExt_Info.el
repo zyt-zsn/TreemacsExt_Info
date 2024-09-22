@@ -180,12 +180,15 @@
 
 (defvar treemacs--project-of-extision-info nil)
 (setq treemacs--project-of-extision-info (car (treemacs-workspace->projects (treemacs-current-workspace))))
-(treemacs-enable-project-extension
+;; (treemacs-enable-project-extension
+;; (treemacs-disable-project-extension
+(treemacs-enable-top-level-extension
  :extension 'TreemacsExt_Info
- :position 'top
+ :position 'bottom
  ;; :predicate (lambda (_)t)
  ;; :predicate (lambda (project) (eq project (car (treemacs-workspace->projects (treemacs-current-workspace)))))
- :predicate (lambda (project) (eq project treemacs--project-of-extision-info))
+ ;; :predicate (lambda (project) (eq project treemacs--project-of-extision-info))
+ :predicate (lambda(_)(string= (treemacs-workspace->name (treemacs-current-workspace)) "Disks"))
  )
 
 (defvar treemacs--project-of-extision-info nil)
