@@ -180,12 +180,15 @@
 
 (defvar treemacs--project-of-extision-info nil)
 (setq treemacs--project-of-extision-info (car (treemacs-workspace->projects (treemacs-current-workspace))))
-(treemacs-enable-project-extension
+;; (treemacs-enable-project-extension
+;; (treemacs-disable-project-extension
+(treemacs-enable-top-level-extension
  :extension 'TreemacsExt_Info
- :position 'top
+ :position 'bottom
  ;; :predicate (lambda (_)t)
  ;; :predicate (lambda (project) (eq project (car (treemacs-workspace->projects (treemacs-current-workspace)))))
- :predicate (lambda (project) (eq project treemacs--project-of-extision-info))
+ ;; :predicate (lambda (project) (eq project treemacs--project-of-extision-info))
+ :predicate (lambda(_)(string= (treemacs-workspace->name (treemacs-current-workspace)) "Disks"))
  )
 
 (defvar treemacs--project-of-extision-info nil)
@@ -227,13 +230,15 @@
 		  (cond
 		   (
 			(and (equal "dir" Info-current-file) (equal '("Top") ret))
-			(list "c:" 'TreemacsExt_Info)
+			;; (list "c:" 'TreemacsExt_Info)
+			(list 'TreemacsExt_Info)
 			)
 		   ((and (string-prefix-p "*" Info-current-file) (string-suffix-p "*" Info-current-file))
 			;;对于比如通过 “M-x info-apropos”动态生成的临时Info文件，不支持定位，直接返回匹配失败
 			nil
 			)
-		   (t (append (list "c:" 'TreemacsExt_Info (file-name-nondirectory Info-current-file)) (cdr ret)))
+		   ;; (t (append (list "c:" 'TreemacsExt_Info (file-name-nondirectory Info-current-file)) (cdr ret)))
+		   (t (append (list 'TreemacsExt_Info (file-name-nondirectory Info-current-file)) (cdr ret)))
 		   )
 		  )
 	  (setq Info-history old-history)
@@ -249,7 +254,7 @@
 	(when
 		(and
 		 (listp path)
-		 (eq 'TreemacsExt_Info (nth 1 path))
+		 (eq 'TreemacsExt_Info (nth 0 path))
 		 ;; (not (memq path matched-path-list))
 		 )
 	  ;; (push path matched-path-list)
