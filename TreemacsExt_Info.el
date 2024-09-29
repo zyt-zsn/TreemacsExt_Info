@@ -9,7 +9,10 @@
 (defun treemacs-list-info-buffer ()
   (progn
 	(unless (get-buffer "*info*")
-	  (info)
+	  (let ((treemacs-buffer (current-buffer)))
+		(info)
+		(pop-to-buffer treemacs-buffer '(display-buffer-in-previous-window . ()) t)
+		)
 	  )
 	(--filter
 	 (eq 'Info-mode (buffer-local-value 'major-mode it))
