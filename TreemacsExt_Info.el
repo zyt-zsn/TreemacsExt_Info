@@ -253,7 +253,8 @@
 
 ;; (defvar-local matched-path-list nil)
 (defun treemacs--tag-match-func-Info (path &optional current-tag-cache)
-  (let ((current-tag-path (or current-tag-cache (treemacs--current-tag-path-info))))
+  (let ((current-tag-path (or current-tag-cache (treemacs--current-tag-path-info)))
+		(path (if (listp path) path (list path))))
 	(when
 		(and
 		 (listp path)
